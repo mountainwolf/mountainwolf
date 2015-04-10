@@ -1,0 +1,12 @@
+<div id='container'>
+  <ul class='results'>
+    <h3>Find an Eatery</h3>
+    <li class='result' ng-repeat="result in data.results | orderBy: 'name' | filter:search" ng-click="changeView('restaurantPage', data)">
+    <!-- TODO change ng-repeat statement acc. to data available -->
+      <a class='name'>{{result.name}}</a>
+      <p class='location'>Location: {{result.location}}</p>
+    <!-- TODO change location relative to neighborhood/link to map/exact address -->
+      <p class='price'>Price: {{result.price}}</p>
+    </li>
+  </ul>
+</div>
