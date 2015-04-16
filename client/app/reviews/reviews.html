@@ -1,0 +1,26 @@
+<div id='container'>
+  <ul class='reviews'>
+    <h3>Reviews</h3>
+    <div class="row col-md-10 search-result">
+      <div>
+        <li class='review' ng-repeat="review in results | orderBy: 'stars'">
+          <span class="restaurantName">{{review.dishname}}, {{review.stars}} stars</span>
+          <span class="restaurantLocation pull-right">{{review.reviewText}}</span>
+        <!-- TODO change ng-repeat statement acc. to data available -->
+    <!-- TODO change location relative to neighborhood/link to map/exact address -->
+        </li>
+      </div>
+    </div>
+  </ul>
+</div>
+
+
+
+<!--     <div class="star-rating">
+      <span class="glyphicon glyphicon-star"></span><span>
+      <span class="glyphicon glyphicon-star"></span><span>
+      <span class="glyphicon glyphicon-star"></span><span>
+      <span class="glyphicon glyphicon-star-empty"></span>
+      <span class="glyphicon glyphicon-star-empty"></span>
+    </div>
+ -->
