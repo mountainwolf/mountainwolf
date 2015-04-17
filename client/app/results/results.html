@@ -1,18 +1,14 @@
-<div id='container'>
-  <ul class='results'>
-    <h3>Find an Eatery</h3>
-      <div "row col-md-10 search-result">
-        <div>
-        <li class='result' ng-repeat="restaurant in results | orderBy: 'name' | filter:search">
-          <a href="#/restaurant/{{results.id}}">
-            <span class="restaurantName">{{restaurant.name}}</span>
-            <span class="restaurantLocation pull-right">{{restaurant.location}}</span>
-            <span class='price'>Price: {{restaurant.price}}</span>
-          </a>
-        <!-- TODO change ng-repeat statement acc. to data available -->
-    <!-- TODO change location relative to neighborhood/link to map/exact address -->
-        </li>
-      </div>
-    </div>
-  </ul>
+<div class="row search-result" ng-repeat="restaurant in results | orderBy: 'name' | filter:search">
+  <div>
+    <a class="restaurant-name" href="#/restaurant/{{results.id}}">{{restaurant.name}}</a>
+    <span class="restaurant-location pull-right">{{restaurant.location}}</span>
+  </div>
+  <div>
+    <span class="restaurant-rating">{{results.rating}} Stars</span>
+    <span class="restaurant-price pull-right">Average Price: ${{restaurant.price}}</span>
+  </div>
 </div>
+
+
+
+
