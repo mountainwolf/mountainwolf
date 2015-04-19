@@ -1,13 +1,40 @@
 <div class="row submit-form">
 
-  <form>
-    <h4>Upload Image:</h4>
-    <input type="file">
-    <br></br>
-    <h4>Write a Review:</h4>
-    <textarea class="review-textbox"></textarea>
-    <button class="review-submit-button" type="submit">Submit</button>
+
+  <form method="post" id="myform" action="#" enctype="multipart/form-data">
+  <p>Upload Image: <input type="file" id="files" name="image"/></p> 
+  <p>review text: <input type="text" id='reviewtext' name="review"/></p> 
+  <p>rating: <input type="number" id='rating' name='rating'/></p>
+  <p>dish name: <input type="text" id='dish_name' name='rating'/></p>
+  <p><input type="submit" class="review-submit-button" value="Upload"/></p>
   </form>
 
 </div>
+<script src="../../lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $("#myform").on('submit', function(event){
+      var fd = new FormData();
+      fd.append('file', $('#files')[0].files[0], "Image");
+      fd.append('text', $('#reviewtext')[0].value);
+      fd.append('rating', $('#rating')[0].value);
+      fd.append('dish_name', $('#dish_name')[0].value);
+      fd.append('user_id', 1);
+      fd.append('restaurant_id', 1);
 
+      event.stopPropagation();
+      event.preventDefault();
+
+      $.ajax({
+        url: '/api/review',
+        type: 'POST',
+        data: fd,
+        processData: false,
+        contentType: false,
+        success:function(results){
+          console.log(results);
+        },
+
+      });
+    })
+
+</script>

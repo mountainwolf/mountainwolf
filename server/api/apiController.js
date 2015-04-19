@@ -77,28 +77,29 @@ module.exports = {
     if (useDB) {
       var info = req.body;
       db.postReview(info.user_id,info.restaurant_id,info.rating,info.dish_name, info.text, info.image_url, function(rows) {
-        res.status(202).end();
+        res.status(202).end(JSON.stringify(req.body));
       } );
     } else {
-      res.status(202).send('post request was heard');
+      res.status(202).send(JSON.stringify(req.body));
     }
   },
 
-  uploadImage: function(req, res, next) {
-
-    var stream = image_uploader.upload_stream(function(result) {
-        res.end(JSON.stringify(result));
-        });
-
+  postFullReview: function(req, res, next) {
     var form = new multiparty.Form();
 
+    var stream = image_uploader.upload_stream(function(result) {
+          req.body.image_url = result.url;
+          module.exports.postReview(req, res, next) 
+        });
+
     form.parse(req, function(err, fields, files){
-      fs.createReadStream(files.image[0].path)
+      for (var key in fields) {
+        req.body[key] = fields[key][0];
+      }
+      fs.createReadStream(files.file[0].path)
         .pipe(stream)
 
-  })
-
-
+    })
 
   }
 

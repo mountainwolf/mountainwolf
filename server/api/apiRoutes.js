@@ -11,9 +11,6 @@ module.exports = function (app) {
   app.route('/reviews/:id')
      .get(apiController.getReviewsWithRestaurantID);
 
-  app.route('/')
-     .post(apiController.postReview);
-
-  app.route('/image')
-     .post(apiController.uploadImage);
+  app.route('/review')
+     .post(apiController.postFullReview);
 }
