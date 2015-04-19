@@ -77,10 +77,10 @@ module.exports = {
     if (useDB) {
       var info = req.body;
       db.postReview(info.user_id,info.restaurant_id,info.rating,info.dish_name, info.text, info.image_url, function(rows) {
-        res.status(202).end();
+        res.status(202).end(JSON.stringify(req.body));
       } );
     } else {
-      res.status(202).send('post request was heard');
+      res.status(202).send(JSON.stringify(req.body));
     }
   },
 
