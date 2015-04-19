@@ -88,7 +88,6 @@ module.exports = {
     var form = new multiparty.Form();
 
     var stream = image_uploader.upload_stream(function(result) {
-          console.log(result);
           req.body.image_url = result.url;
           module.exports.postReview(req, res, next) 
         });
@@ -105,40 +104,3 @@ module.exports = {
   }
 
 }
-
-// <script src="lib/jquery/dist/jquery.min.js"></script>
-
-// <form method="post" id="myform" action="#" enctype="multipart/form-data">
-// <p>Image: <input type="file" id="files" name="image"/></p> 
-// <p>review text: <input type="text" id='reviewtext' name="review"/></p> 
-// <p>rating: <input type="number" id='rating' name='rating'/></p>
-// <p>dish name: <input type="text" id='dish_name' name='rating'/></p>
-// <p><input type="submit" value="Upload"/></p>
-// </form>
-
-// <script>
-// $("#myform").on('submit', function(event){
-//   var fd = new FormData();
-//   fd.append('file', $('#files')[0].files[0], "Image");
-//   fd.append('text', $('#reviewtext')[0].value);
-//   fd.append('rating', $('#rating')[0].value);
-//   fd.append('dish_name', $('#dish_name')[0].value);
-//   fd.append('user_id', 1);
-//   fd.append('restaurant_id', 1);
-
-//   event.stopPropagation();
-//   event.preventDefault();
-
-//   $.ajax({
-//     url: '/api/review',
-//     type: 'POST',
-//     data: fd,
-//     processData: false,
-//     contentType: false,
-//     success:function(){
-
-//     },
-
-//   });
-// })
-// </script>
