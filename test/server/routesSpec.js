@@ -56,24 +56,5 @@ describe('', function() {
 
 
   });
-  describe('post api ', function() {
 
-    it('returns 202 for post to root', function(done) {
-      request(url)
-        .post('/api/')
-        .send({ 
-          user_id: '1', 
-          restaurant_id: '1',
-          rating: 5,
-          dish_name: 'food',
-          text: 'was food',
-          image_url: 'http://pngimg.com/upload/chicken_PNG2145.png'
-        })
-        .expect(202)
-        .end(done);
-    });
-
-
-
-  });
 });
