@@ -1,20 +1,26 @@
 <div class="row submit-form">
 
+  <form name="reviewForm" novalidate>
 
     <h4>Upload Image:</h4>
-    <input type="file" name="image" class="image"></input>
-    <br></br>
+    <input type="file" name="image" class="image" ng-model="file" valid-file required accept="image/*"></input>
+    <p>{{ reviewForm.image.$error.required && ' - please upload an image file - ' || 'Looks good!'}}</p>
+
     <h4>Dish Name:</h4>
-    <textarea class="review-dishname" ng-model="dishname"></textarea>
+    <textarea class="review-dishname" name="dishname" ng-model="dishname" ng-minlength="2" ng-required="true"></textarea>
+    <p ng-show="reviewForm.dishname.$error.required && !reviewForm.dishname.$pristine" class="help-block">Please enter the name of the dish you're reviewing.</p>
+
     <h4>Review:</h4>
-    <textarea class="review-textbox" ng-model="review"></textarea>
+    <textarea class="review-textbox" name="review" ng-model="review" ng-minlength="3" ng-required="true"></textarea>
+     <p ng-show="reviewForm.review.$invalid && !reviewForm.review.$pristine" class="help-block">Your thoughts aren't optional!</p>
+
     <h4>Out of 5 stars, this dish was a..</h4>
-    <textarea class="review-dishname" ng-model="stars"></textarea>
+    <textarea class="review-dishname" name="stars"ng-model="stars" ng-maxlength="1" ng-required="true"></textarea>
+    <p ng-show="reviewForm.stars.$invalid && !reviewForm.stars.$pristine" class="help-block">Please rate this dish on a scale of 0-5.</p>
     <br></br>
 
-    <button class="btn" ng-click="sendReview()">Submit</button>
+    <button class="review-submit-button" ng-disabled="reviewForm.$invalid" ng-click="sendReview()">Submit</button>
 
+  </form>
 
 </div>
-
-
